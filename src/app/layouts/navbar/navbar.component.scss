@@ -1,0 +1,36 @@
+
+
+.nav-link 
+{
+	cursor: pointer;
+}
+
+.navbar-nav .nav-link 
+{
+	transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover
+{
+	color: #8c8f94 !important;
+	
+}
+
+
+.btn-custom 
+{
+	color: white;
+	background-color: #8c8f94;
+	border: 2px solid #8c8f94;
+	transition: all 0.3s ease;
+	padding: 10px 20px;
+	border-radius: 6px;
+}
+
+.btn-custom:hover,
+.btn-custom:focus 
+{
+	background-color: #75787d;
+	border-color: #75787d;
+	box-shadow: 0 0 8px rgba(140, 143, 148, 0.5);
+}
