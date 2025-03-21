@@ -1,11 +1,8 @@
 <section class="container d-flex justify-content-center align-items-center vh-100">
 	<div class="shadow-lg rounded-4 p-4 bg-white"
 		style="width: 100%; max-width: 450px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
-
 		<h1 class="text-primary fw-bold fs-3 mb-4 text-center">Register New</h1>
-
 		<form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
-
 
 			<div class="mb-3">
 				<label for="name" class="form-label fw-semibold">Name</label>
@@ -31,7 +28,7 @@
 				</div>
 				}
 			</div>
-
+			
 			<div class="mb-3">
 				<label for="email" class="form-label fw-semibold">Email Address</label>
 				<input formControlName="email" type="email" class="form-control rounded-3 p-2" id="email"
@@ -105,7 +102,6 @@
 				}
 			</div>
 
-
 			<div class="mb-3">
 				<label for="phone" class="form-label fw-semibold">Phone</label>
 				<input formControlName="phone" type="tel" class="form-control rounded-3 p-2" id="phone"
@@ -126,7 +122,6 @@
 				}
 			</div>
 
-
 			<div class="text-center">
 				<button [disabled]="isLoading" type="submit" class="btn btn-primary px-4 py-2 fw-bold rounded-3 w-100">
 					Sign Up
@@ -137,7 +132,6 @@
 					
 				</button>
 			</div>
-
 			@if (successMessage)
 			{
 				<div class="alert alert-success d-flex align-items-center mt-2" role="alert">
@@ -147,7 +141,6 @@
 					</div>
 				</div>
 			}
-
 			@else if (errorMessage)
 			{
 				<div class="alert alert-danger d-flex align-items-center mt-2" role="alert">
@@ -157,13 +150,6 @@
 					</div>
 				</div>
 			}
-
-
-
-
-
-
-
 		</form>
 	</div>
 </section>

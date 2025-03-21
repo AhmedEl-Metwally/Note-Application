@@ -12,13 +12,12 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent
 {
-
   private readonly _authService = inject(AuthService)
   private readonly _router = inject(Router)
 
-  successMessage:string = ''
+  successMessage: string = ''
   errorMessage: string = ''
-  isLoading:boolean = false
+  isLoading: boolean = false
 
   registerForm: FormGroup = new FormGroup
     ({
@@ -46,7 +45,7 @@ export class RegisterComponent
           Validators.required,
           Validators.min(10),
           Validators.max(100),
-          Validators.pattern(/^\d+$/) 
+          Validators.pattern(/^\d+$/)
         ]),
       phone: new FormControl('',
         [
@@ -55,35 +54,33 @@ export class RegisterComponent
           Validators.pattern(/^\d{11}$/)
         ]),
     })
-  
-  submitRegisterForm():void
-  {
-    console.log(this.registerForm.value);
-    this.isLoading = true
-    this._authService.sendRegisterData(this.registerForm.value).subscribe
-      ({
-        next: (res)=>
-        {
-          if (res.msg === "done")
-          {
-            console.log(res);
-            this.registerForm.reset()
-            setTimeout(() =>
-            { 
-              this._router.navigate(['/login'])
-            }, 600)
-            this.successMessage = res.msg
+
+  submitRegisterForm(): void {
+    if (this.registerForm.valid) {
+      this.isLoading = true
+      this._authService.sendRegisterData(this.registerForm.value).subscribe
+        ({
+          next: (res) => {
+            if (res.msg === "done") {
+              console.log(res);
+              this.registerForm.reset()
+              setTimeout(() => {
+                this._router.navigate(['/login'])
+              }, 600)
+              this.successMessage = res.msg
+              this.isLoading = false
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            console.log(err);
+            this.errorMessage = err.error.msg
             this.isLoading = false
           }
-        },
-        error: (err:HttpErrorResponse) =>
-        {
-          console.log(err);
-          this.errorMessage = err.error.msg
-          this.isLoading = false
-        }
-      })
+        })
+    }
+    else
+          {
+            this.registerForm.markAllAsTouched()
+          }
   }
-
-
 }
