@@ -1,1 +1,132 @@
-<p>register works!</p>
+<section class="container d-flex justify-content-center align-items-center vh-100">
+	<div class="shadow-lg rounded-4 p-4 bg-white"
+		style="width: 100%; max-width: 450px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+
+		<h1 class="text-primary fw-bold fs-3 mb-4 text-center">Register New</h1>
+
+		<form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+
+
+			<div class="mb-3">
+				<label for="name" class="form-label fw-semibold">Name</label>
+				<input formControlName="name" type="text" class="form-control rounded-3 p-2" id="name"
+					placeholder="Full Name">
+				@if (registerForm.get('name')?.errors && registerForm.get('name')?.touched)
+				{
+				<div class="alert alert-danger mt-2 p-2 rounded-3 text-sm">
+					@if (registerForm.get('name')?.getError('required'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Name is required.</span>
+					}
+					@else if (registerForm.get('name')?.getError('minlength'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Name must be at least 3
+						characters.</span>
+					}
+					@else if (registerForm.get('name')?.getError('maxlength'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Name must be at most 20
+						characters.</span>
+					}
+				</div>
+				}
+			</div>
+
+			<div class="mb-3">
+				<label for="email" class="form-label fw-semibold">Email Address</label>
+				<input formControlName="email" type="email" class="form-control rounded-3 p-2" id="email"
+					placeholder="name@example.com">
+				@if (registerForm.get('email')?.errors && registerForm.get('email')?.touched)
+				{
+				<div class="alert alert-danger mt-2 p-2 rounded-3 text-sm">
+					@if (registerForm.get('email')?.getError('required'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Email is required.</span>
+					}
+					@else if (registerForm.get('email')?.getError('email'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Please enter a valid email.</span>
+					}
+					@else if (registerForm.get('email')?.getError('pattern'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Please enter a valid domain (e.g., .com, .org,
+						.net).</span>
+					}
+				</div>
+				}
+			</div>
+
+			<div class="mb-3">
+				<label for="password" class="form-label fw-semibold">Password</label>
+				<input formControlName="password" type="password" class="form-control rounded-3 p-2" id="password"
+					placeholder="Enter Your Password">
+				@if (registerForm.get('password')?.errors && registerForm.get('password')?.touched)
+				{
+				<div class="alert alert-danger mt-2 p-2 rounded-3 text-sm">
+					@if (registerForm.get('password')?.getError('required'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Password is required.</span>
+					}
+					@else if (registerForm.get('password')?.getError('minlength'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Password must be at least 8 characters.</span>
+					}
+					@else if (registerForm.get('password')?.getError('pattern'))
+					{ 
+						<span>
+							<i class="fa-solid fa-triangle-exclamation text-danger"></i> 
+							Password must contain uppercase, lowercase, number, and special character.</span>
+					}
+				</div>
+				}
+			</div>
+
+			<div class="mb-3">
+				<label for="age" class="form-label fw-semibold">Age</label>
+				<input formControlName="age" type="number" class="form-control rounded-3 p-2" id="age"
+					placeholder="Enter Your Age">
+				@if (registerForm.get('age')?.errors && registerForm.get('age')?.touched)
+				{
+				<div class="alert alert-danger mt-2 p-2 rounded-3 text-sm">
+					@if (registerForm.get('age')?.getError('required'))
+					{ <span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Age is required.</span> }
+					@else if (registerForm.get('age')?.getError('min'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Age must be at least 10.</span>
+					}
+					@else if (registerForm.get('age')?.getError('max'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Age must be at most 100.</span>
+					}
+				</div>
+				}
+			</div>
+
+
+			<div class="mb-3">
+				<label for="phone" class="form-label fw-semibold">Phone</label>
+				<input formControlName="phone" type="tel" class="form-control rounded-3 p-2" id="phone"
+					placeholder="Enter Your Phone">
+				@if (registerForm.get('phone')?.errors && registerForm.get('phone')?.touched)
+				{
+				<div class="alert alert-danger mt-2 p-2 rounded-3 text-sm">
+					@if (registerForm.get('phone')?.getError('required'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Phone number is required.</span>
+					}
+					@else if(registerForm.get('phone')?.getError('pattern'))
+					{
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Phone number must be exactly 11 digits.</span>
+					}
+				</div>
+				}
+			</div>
+
+
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary px-4 py-2 fw-bold rounded-3 w-100">Sign Up</button>
+			</div>
+
+		</form>
+	</div>
+</section>
