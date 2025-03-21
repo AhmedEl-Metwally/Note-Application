@@ -45,11 +45,13 @@
 					}
 					@else if (registerForm.get('email')?.getError('email'))
 					{
-					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Please enter a valid email.</span>
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Please enter a valid
+						email.</span>
 					}
 					@else if (registerForm.get('email')?.getError('pattern'))
 					{
-					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Please enter a valid domain (e.g., .com, .org,
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Please enter a valid domain
+						(e.g., .com, .org,
 						.net).</span>
 					}
 				</div>
@@ -69,13 +71,14 @@
 					}
 					@else if (registerForm.get('password')?.getError('minlength'))
 					{
-					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Password must be at least 8 characters.</span>
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Password must be at least 8
+						characters.</span>
 					}
 					@else if (registerForm.get('password')?.getError('pattern'))
-					{ 
-						<span>
-							<i class="fa-solid fa-triangle-exclamation text-danger"></i> 
-							Password must contain uppercase, lowercase, number, and special character.</span>
+					{
+					<span>
+						<i class="fa-solid fa-triangle-exclamation text-danger"></i>
+						Password must contain uppercase, lowercase, number, and special character.</span>
 					}
 				</div>
 				}
@@ -116,7 +119,8 @@
 					}
 					@else if(registerForm.get('phone')?.getError('pattern'))
 					{
-					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Phone number must be exactly 11 digits.</span>
+					<span><i class="fa-solid fa-triangle-exclamation text-danger"></i> Phone number must be exactly 11
+						digits.</span>
 					}
 				</div>
 				}
@@ -124,8 +128,41 @@
 
 
 			<div class="text-center">
-				<button type="submit" class="btn btn-primary px-4 py-2 fw-bold rounded-3 w-100">Sign Up</button>
+				<button [disabled]="isLoading" type="submit" class="btn btn-primary px-4 py-2 fw-bold rounded-3 w-100">
+					Sign Up
+					@if (isLoading) 
+					{
+						<i class="fa-solid fa-spinner animate-spin"></i>
+					}
+					
+				</button>
 			</div>
+
+			@if (successMessage)
+			{
+				<div class="alert alert-success d-flex align-items-center mt-2" role="alert">
+					<i class="fa-solid fa-check me-2"></i>
+					<div>
+						{{successMessage}}
+					</div>
+				</div>
+			}
+
+			@else if (errorMessage)
+			{
+				<div class="alert alert-danger d-flex align-items-center mt-2" role="alert">
+					<i class="fa-solid fa-triangle-exclamation me-2"></i>
+					<div>
+						{{errorMessage}}
+					</div>
+				</div>
+			}
+
+
+
+
+
+
 
 		</form>
 	</div>

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +12,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class RegisterComponent
 {
+
+  private readonly _authService = inject(AuthService)
+  private readonly _router = inject(Router)
+
+  successMessage:string = ''
+  errorMessage: string = ''
+  isLoading:boolean = false
 
   registerForm: FormGroup = new FormGroup
     ({
@@ -49,7 +59,30 @@ export class RegisterComponent
   submitRegisterForm():void
   {
     console.log(this.registerForm.value);
-    
+    this.isLoading = true
+    this._authService.sendRegisterData(this.registerForm.value).subscribe
+      ({
+        next: (res)=>
+        {
+          if (res.msg === "done")
+          {
+            console.log(res);
+            this.registerForm.reset()
+            setTimeout(() =>
+            { 
+              this._router.navigate(['/login'])
+            }, 600)
+            this.successMessage = res.msg
+            this.isLoading = false
+          }
+        },
+        error: (err:HttpErrorResponse) =>
+        {
+          console.log(err);
+          this.errorMessage = err.error.msg
+          this.isLoading = false
+        }
+      })
   }
 
 
