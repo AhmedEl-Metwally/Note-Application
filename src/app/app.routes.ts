@@ -7,19 +7,21 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { NotFountComponent } from './pages/not-fount/not-fount.component';
+import { authGuard } from './core/guards/authentication/auth.guard';
+import { loggedGuard } from './core/guards/logged/logged.guard';
 
 export const routes: Routes =
 	[
 	    {path:'',redirectTo:'home', pathMatch: 'full'},
 		{
-			path: '', component: AuthLayoutComponent, children:
+			path: '', component: AuthLayoutComponent, canActivate:[loggedGuard] ,children:
 				[
 					{ path: 'register', component: RegisterComponent, title:'Register'},
 					{ path: 'login', component: LoginComponent, title:'Login'},
 				]
 		},
 		{
-			path: '', component: MainLayoutComponent, children:
+			path: '', component: MainLayoutComponent, canActivate:[authGuard] ,children:
 				[
 					{path:'home', component:HomeComponent,title:"Home"},
 					{ path: 'notes', component: NotesComponent, title:"Notes"},
