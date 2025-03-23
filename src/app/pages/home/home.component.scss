@@ -1,0 +1,44 @@
+ @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+ .transition-glass {
+ 	transition: all 0.3s ease-in-out;
+ 	background: linear-gradient(135deg, #007bff, #0056b3);
+ 	border: none;
+ 	box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+ }
+
+ .transition-glass:hover {
+ 	background: linear-gradient(135deg, #0056b3, #004494);
+ 	transform: scale(1.1);
+ 	box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+ }
+
+ .modal-content {
+ 	background: rgba(255, 255, 255, 0.1);
+ 	backdrop-filter: blur(10px);
+ 	border-radius: 16px;
+ 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+ 	animation: fadeInUp 0.4s ease-in-out;
+ }
+
+ .glass-effect {
+ 	background: rgba(255, 255, 255, 0.2);
+ 	backdrop-filter: blur(15px);
+ 	border-radius: 16px;
+ 	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+ }
+
+ .focus-effect:focus {
+ 	border-color: #007bff;
+ 	box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+ 	transition: 0.3s;
+ }
+
+ .input-group-text {
+ 	border-radius: 8px 0 0 8px;
+ }
+
+ .btn-primary:active {
+ 	transform: scale(0.95);
+ 	box-shadow: none;
+ }
