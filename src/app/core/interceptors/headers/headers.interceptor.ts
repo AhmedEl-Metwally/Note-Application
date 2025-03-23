@@ -2,8 +2,6 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) =>
 {
-
-
   if (localStorage.getItem('userToken') !== null)
   {
     if (req.url.includes('notes'))
@@ -16,11 +14,6 @@ export const headersInterceptor: HttpInterceptorFn = (req, next) =>
       })
     }
   }
-
-
-
-
-
 
   return next(req);
 };

@@ -35,10 +35,4 @@ export class NotesService
     return this._httpClient.delete(`${environment.noteUrl}${id}`)
   }
 
-
-
-
-
-
-
 }
