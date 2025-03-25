@@ -1,44 +1,77 @@
- @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
- .transition-glass {
- 	transition: all 0.3s ease-in-out;
- 	background: linear-gradient(135deg, #007bff, #0056b3);
- 	border: none;
- 	box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
- }
+$primary-color: #007bff;
+$shadow-light: 0 4px 10px rgba(0, 0, 0, 0.1);
+$shadow-dark: 0 10px 20px rgba(0, 0, 0, 0.15);
 
- .transition-glass:hover {
- 	background: linear-gradient(135deg, #0056b3, #004494);
- 	transform: scale(1.1);
- 	box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
- }
 
- .modal-content {
- 	background: rgba(255, 255, 255, 0.1);
- 	backdrop-filter: blur(10px);
- 	border-radius: 16px;
- 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
- 	animation: fadeInUp 0.4s ease-in-out;
- }
+.glass-effect {
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(15px);
+	border-radius: 16px;
+	box-shadow: $shadow-dark;
+	transition: all 0.3s ease-in-out;
 
- .glass-effect {
- 	background: rgba(255, 255, 255, 0.2);
- 	backdrop-filter: blur(15px);
- 	border-radius: 16px;
- 	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
- }
+	&:hover {
+		transform: scale(1.02);
+		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	}
+}
 
- .focus-effect:focus {
- 	border-color: #007bff;
- 	box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
- 	transition: 0.3s;
- }
 
- .input-group-text {
- 	border-radius: 8px 0 0 8px;
- }
+.transition-glass {
+	background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+	box-shadow: $shadow-light;
+	border: none;
+	transition: all 0.3s ease-in-out;
 
- .btn-primary:active {
- 	transform: scale(0.95);
- 	box-shadow: none;
- }
+	&:hover {
+		transform: scale(1.1);
+		box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+	}
+}
+
+.input-style {
+	border: none;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.9);
+	transition: 0.3s;
+
+	&:focus {
+		border-color: $primary-color;
+		box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+	}
+}
+
+
+.note-card {
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95));
+	border-radius: 16px;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	box-shadow: $shadow-light;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.15);
+	}
+
+	.card-actions {
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out;
+	}
+
+	&:hover .card-actions {
+		opacity: 1;
+	}
+}
+
+
+.btn-close {
+	filter: invert(1);
+	transition: 0.2s;
+
+	&:hover 
+	{
+		transform: rotate(90deg);
+	}
+}

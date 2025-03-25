@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { ToastrService } from 'ngx-toastr';
+import { INotes } from '../../shared/interfaces/inotes';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,13 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent
+export class HomeComponent implements OnInit
 {
 
   private readonly _notesService = inject(NotesService)
   private readonly _toastrService = inject(ToastrService)
+
+  notesData:INotes[] =[]
 
   addNoteForm: FormGroup = new FormGroup
     ({
@@ -33,6 +36,28 @@ export class HomeComponent
         ]),
     })
   
+  ngOnInit(): void
+  {
+    this.getAllUserNotes()
+  }
+
+  getAllUserNotes(): void
+  {
+    this._notesService.getUserNotes().subscribe
+      ({
+        next: (res) =>
+        {
+          console.log(res.notes);
+          this.notesData = res.notes
+        },
+        error: (err) =>
+        {
+          console.log(err);
+          
+        }
+      })
+  }
+  
   submitAddNoteForm():void
   {
     console.log(this.addNoteForm.value);
@@ -41,6 +66,7 @@ export class HomeComponent
         next: (res) =>
         {
           console.log(res.note);
+          this.getAllUserNotes()
           this._toastrService.success(res.msg,'Notify Team')
         },
         error: (err) =>
