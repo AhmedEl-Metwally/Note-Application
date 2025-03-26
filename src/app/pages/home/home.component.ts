@@ -6,6 +6,7 @@ import { INotes } from '../../shared/interfaces/inotes';
 import { NoteData } from '../../shared/interfaces/note-data';
 import { title } from 'process';
 
+
 @Component({
   selector: 'app-home',
   imports: [ReactiveFormsModule],
@@ -38,6 +39,8 @@ export class HomeComponent implements OnInit
           Validators.pattern('^[a-zA-Z0-9.,!?\\s]+$'), 
         ]),
     })
+  
+
   
   updateNoteForm: FormGroup = new FormGroup
     ({
@@ -114,6 +117,23 @@ export class HomeComponent implements OnInit
         next: (res) =>
         {
           console.log(res.note);
+          this.getAllUserNotes()
+        },
+        error: (err) =>
+        {
+          console.log(err);
+          
+        }
+      })
+  }
+
+  deleteUserData(id: string): void
+  {
+    this._notesService.deleteNote(id).subscribe
+      ({
+        next: (res) =>
+        {
+          console.log(res);
           this.getAllUserNotes()
         },
         error: (err) =>

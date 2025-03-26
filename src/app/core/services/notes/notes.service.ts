@@ -38,7 +38,13 @@ export class NotesService
 
   deleteNote(id: string): Observable<any>
   {
-    return this._httpClient.delete(`${environment.noteUrl}${id}`)
+    return this._httpClient.delete(`${environment.noteUrl}/${id}`,
+      {
+        headers: {
+          token: localStorage.getItem('token') || ''
+        }
+      }
+    )
   }
 
 }
