@@ -27,7 +27,13 @@ export class NotesService
 
   updateNote(id: string, data: object): Observable<any>
   {
-    return this._httpClient.put(`${environment.noteUrl}${id}`,data)
+    return this._httpClient.put(`${environment.noteUrl}/${id}`, data,
+      {
+        headers: {
+          token: localStorage.getItem('token') || ''
+        }
+      }
+    )
   }
 
   deleteNote(id: string): Observable<any>
