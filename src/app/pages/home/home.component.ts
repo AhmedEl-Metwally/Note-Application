@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit
         {
           console.log(res.note);
           this.getAllUserNotes()
-          this._toastrService.success(res.msg,'Notify Team')
+          this._toastrService.success(res.msg)
         },
         error: (err) =>
         {
@@ -118,6 +118,7 @@ export class HomeComponent implements OnInit
         {
           console.log(res.note);
           this.getAllUserNotes()
+          this._toastrService.success(res.msg)
         },
         error: (err) =>
         {
@@ -135,6 +136,7 @@ export class HomeComponent implements OnInit
         {
           console.log(res);
           this.getAllUserNotes()
+          this._toastrService.success(res.msg)
         },
         error: (err) =>
         {
