@@ -76,7 +76,11 @@ export class HomeComponent implements OnInit
         error: (err) =>
         {
           console.log(err);
-          
+
+          if (err.error.msg ==='not notes found')
+          {
+            this.notesData = []
+          }
         }
       })
   }
@@ -90,6 +94,7 @@ export class HomeComponent implements OnInit
         {
           console.log(res.note);
           this.getAllUserNotes()
+          this.addNoteForm.reset()
           this._toastrService.success(res.msg)
         },
         error: (err) =>
@@ -118,6 +123,7 @@ export class HomeComponent implements OnInit
         {
           console.log(res.note);
           this.getAllUserNotes()
+          this.updateNoteForm.reset()
           this._toastrService.success(res.msg)
         },
         error: (err) =>

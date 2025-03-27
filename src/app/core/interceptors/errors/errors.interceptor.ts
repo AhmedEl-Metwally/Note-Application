@@ -12,7 +12,12 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) =>
     catchError((err) =>
     {
       console.log(err, 'error from interceptor');
-      _toastrService.error(err.error.msg)
+      
+      if (err.error.msg !== 'not notes found')
+      {
+        _toastrService.error(err.error.msg)
+      }
+      
       return throwError(()=>err)
     })
   )
