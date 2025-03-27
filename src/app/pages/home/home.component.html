@@ -1,10 +1,20 @@
 <div class="container d-flex flex-column align-items-center py-5">
+
 	<button class="btn btn-primary btn-lg rounded-pill shadow-lg px-5 py-3 fw-bold transition-glass"
 		data-bs-toggle="modal" data-bs-target="#addNoteModal">
 		<i class="fa-solid fa-plus-circle me-2"></i> Add Note
 	</button>
+
+
+	<div class="search-container mt-4 w-50 position-relative">
+		<i class="fa-solid fa-search search-icon"></i>
+		<input type="search" class="form-control search-input rounded-pill shadow-sm ps-5 py-3"
+			placeholder="Search notes..." [(ngModel)]="searchInput" >
+	</div>
+
+
 	<div class="row mt-5 w-100 justify-content-center">
-		@for (note of notesData; track note._id)
+		@for (note of notesData | search:searchInput ; track note._id)
 		{
 		<div class="col-lg-4 col-md-6 col-sm-12 mb-4">
 			<div class="card note-card shadow-lg border-0 rounded-4 overflow-hidden">
@@ -12,17 +22,16 @@
 					<h5 class="card-title fw-bold text-primary">{{ note.title }}</h5>
 					<p class="card-text text-muted">{{ note.content }}</p>
 				</div>
-				
+
 				<div class="card-actions d-flex justify-content-between p-3">
-
-				
-
-					<button (click)="setUpdateData(note, note._id)" class="btn btn-outline-warning btn-sm rounded-pill px-3 fw-bold" 
-					data-bs-toggle="modal" data-bs-target="#editModal" >
-						<i class="fa-solid fa-file-pen me-1 "></i> Edit
+					<button (click)="setUpdateData(note, note._id)"
+						class="btn btn-outline-warning btn-sm rounded-pill px-3 fw-bold" data-bs-toggle="modal"
+						data-bs-target="#editModal">
+						<i class="fa-solid fa-file-pen me-1"></i> Edit
 					</button>
-					
-					<button (click)="deleteUserData(note._id)" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-bold">
+
+					<button (click)="deleteUserData(note._id)"
+						class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-bold">
 						<i class="fa-solid fa-trash me-1"></i> Delete
 					</button>
 				</div>
@@ -31,6 +40,10 @@
 		}
 	</div>
 </div>
+
+
+
+
 
 
 

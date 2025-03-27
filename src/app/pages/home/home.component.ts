@@ -1,15 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NotesService } from '../../core/services/notes/notes.service';
 import { ToastrService } from 'ngx-toastr';
 import { INotes } from '../../shared/interfaces/inotes';
 import { NoteData } from '../../shared/interfaces/note-data';
 import { title } from 'process';
+import { SearchPipe } from '../../shared/pipes/search.pipe';
 
 
 @Component({
   selector: 'app-home',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SearchPipe, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit
   private readonly _toastrService = inject(ToastrService)
 
   notesData:INotes[] =[]
-  notesId!:string
+  notesId!: string
+  searchInput: string = ''
 
   addNoteForm: FormGroup = new FormGroup
     ({
