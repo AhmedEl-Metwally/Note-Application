@@ -51,6 +51,7 @@ export class LoginComponent
             {
               console.log(res);
               this.loginForm.reset()
+              this._authService.saveUserToken()
               localStorage.setItem('userToken' , res.token)
               setTimeout(() => {
                 this._router.navigate(['/home'])
